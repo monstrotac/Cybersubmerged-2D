@@ -178,6 +178,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5767023251023152565, guid: 5207635937b768a4098779a560a4f091, type: 3}
+      propertyPath: speed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5767023251023152565, guid: 5207635937b768a4098779a560a4f091, type: 3}
+      propertyPath: patrol.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5767023251023152565, guid: 5207635937b768a4098779a560a4f091, type: 3}
+      propertyPath: patrol.Array.data[0].y
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5767023251023152565, guid: 5207635937b768a4098779a560a4f091, type: 3}
+      propertyPath: patrol.Array.data[1].x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5767023251023152565, guid: 5207635937b768a4098779a560a4f091, type: 3}
+      propertyPath: patrol.Array.data[1].y
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5767023251023152565, guid: 5207635937b768a4098779a560a4f091, type: 3}
+      propertyPath: patrol.Array.data[2].x
+      value: -6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5207635937b768a4098779a560a4f091, type: 3}
 --- !u!1001 &615142072019723882

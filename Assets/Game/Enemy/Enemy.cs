@@ -8,7 +8,8 @@ public class Enemy : MonoBehaviour
         PATROLLING,
         FOLLOWING,
         RETURNING,
-        SEARCHING
+        SEARCHING,
+        SUPERFOLLOWING
     }
 
     public GameObject player;
@@ -53,14 +54,32 @@ public class Enemy : MonoBehaviour
             {
                 lastPosition = transform.position;
                 state = EnemyState.FOLLOWING;
+                foreach (Enemy others in FindObjectsOfType<Enemy>())
+                {
+                    if(this != others)
+                    others.state = EnemyState.SUPERFOLLOWING;
+                }
             }
         }
         else if (state == EnemyState.FOLLOWING)
         {
             timer = 0;
-            dist = 5;
+            dist = 6;
             state = EnemyState.SEARCHING;
+
             InverstigationPlace = transform.position;
+
+            lastPosition = new Vector3(InverstigationPlace.x + Random.Range(-50, 50), InverstigationPlace.y + Random.Range(-50, 50), InverstigationPlace.z);
+            lastPosition = lastPosition.normalized/1.3f;
+
+            foreach (Enemy others in FindObjectsOfType<Enemy>())
+            {
+                if (others.state == EnemyState.SUPERFOLLOWING)
+                {
+                    if (this != others)
+                        others.state = EnemyState.FOLLOWING;
+                } 
+            }
         }
         else if (state == EnemyState.SEARCHING)
         {
@@ -72,13 +91,14 @@ public class Enemy : MonoBehaviour
                 state = EnemyState.RETURNING;
             }
 
-            /*if (lastPosition.x > )
+            if (calculateDist(transform.position, InverstigationPlace+lastPosition) < 0.5f)
             {
-                lastPosition = new Vector3(InverstigationPlace.x + Random.Range(-5, 5), InverstigationPlace.y + Random.Range(-5, 5), InverstigationPlace.z);
+                lastPosition = new Vector3(InverstigationPlace.x + Random.Range(-50, 50), InverstigationPlace.y + Random.Range(-50, 50), InverstigationPlace.z);
+                lastPosition = lastPosition.normalized/ 1.3f;
             }
-            */
+            
 
-            transform.position = InverstigationPlace + lastPosition.normalized * speed * Time.deltaTime;
+            transform.position = transform.position + lastPosition.normalized * speed * Time.deltaTime;
         }
 
         //Notre boucle de patrouille
@@ -106,7 +126,7 @@ public class Enemy : MonoBehaviour
                 transform.position = new Vector3(Mathf.Lerp(returnPosition.x, patrol[calculateNextPoisitionIndex(patrolstep + 1)].x, timer / dist), Mathf.Lerp(returnPosition.y, patrol[calculateNextPoisitionIndex(patrolstep + 1)].y, timer / dist), transform.position.z);
             }
         }
-        if (state == EnemyState.FOLLOWING)
+        if (state == EnemyState.FOLLOWING || state == EnemyState.SUPERFOLLOWING)
         {
             Vector3 playPos = player.transform.position;
             Vector3 EnePos = transform.position;
@@ -114,6 +134,7 @@ public class Enemy : MonoBehaviour
             
             transform.position = EnePos + dir.normalized * speed * Time.deltaTime;
         }
+        
     }
 
     public int calculateNextPoisitionIndex(int index) {
