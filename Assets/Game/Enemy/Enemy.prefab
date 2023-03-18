@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5120717874974131606}
   - component: {fileID: 8163293137680357386}
   - component: {fileID: 5767023251023152565}
+  - component: {fileID: 4713440397927636095}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: -2083142411
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  m_Sprite: {fileID: 1859888941, guid: 3e9a1c5b3c003d7478138fce7bb0bbd3, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -93,7 +94,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1969751404875388054}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -103,7 +104,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.64, y: 0.64}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -124,3 +125,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eac70dc84baeb424495a9fdc5b168760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  patrol: []
+  patrolstep: 0
+  lastPosition: {x: 0, y: 0, z: 0}
+  returnPosition: {x: 0, y: 0, z: 0}
+  timer: 0
+  speed: 1
+  dist: 1
+  viewDist: 1
+  state: 0
+  InverstigationPlace: {x: 0, y: 0, z: 0}
+--- !u!58 &4713440397927636095
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969751404875388054}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.75

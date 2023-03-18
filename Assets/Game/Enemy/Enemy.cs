@@ -134,7 +134,7 @@ public class Enemy : MonoBehaviour
             
             transform.position = EnePos + dir.normalized * speed * Time.deltaTime;
         }
-        
+
     }
 
     public int calculateNextPoisitionIndex(int index) {
